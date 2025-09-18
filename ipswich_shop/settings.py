@@ -63,20 +63,13 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
+# --- Static files (prod via WhiteNoise) ---
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATICFILES_DIRS = [BASE_DIR / "static"]  # keep only if /static exists
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# Use Manifest only if explicitly enabled; otherwise safe compressed storage
-USE_MANIFEST_STATIC = os.getenv("USE_MANIFEST_STATIC", "0") == "1"
-if USE_MANIFEST_STATIC:
-    STORAGES = {
-        "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}
-    }
-else:
-    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}}
+# Always safe compressed storage (no manifest) for first deploys
+STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}}
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

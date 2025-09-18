@@ -13,8 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# make the start script executable
+RUN chmod +x /app/render_start.sh
+
 ENV DJANGO_SETTINGS_MODULE=ipswich_shop.settings
 ENV PORT=8000
 
 EXPOSE 8000
-CMD ["gunicorn", "ipswich_shop.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2"]
+CMD ["./render_start.sh"]
