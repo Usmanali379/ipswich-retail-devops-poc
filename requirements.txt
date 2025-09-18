@@ -1,0 +1,8 @@
+Django>=5.0,<6.0
+gunicorn>=21.2
+psycopg[binary]>=3.2 ; platform_system != 'Windows'
+prometheus-client>=0.20
+pytest>=8.0
+pytest-django>=4.8
+ruff>=0.5.0
+black>=24.0

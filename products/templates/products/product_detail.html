@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block content %}
+<h1>{{ item.name }}</h1>
+<p>{{ item.description }}</p>
+<p class="text-muted">£{{ item.price }}</p>
+<a class="btn btn-secondary" href="/">Back</a>
+{% endblock %}

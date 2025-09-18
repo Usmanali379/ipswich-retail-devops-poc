@@ -1,0 +1,26 @@
+{
+  "name": "Ipswich Retail DevOps PoC",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions"
+      ]
+    }
+  },
+  "postCreateCommand": "python -m pip install --upgrade pip && pip install -r requirements.txt && pip install pre-commit && pre-commit install",
+  "remoteUser": "vscode",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Django",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}

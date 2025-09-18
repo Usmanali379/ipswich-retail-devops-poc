@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block content %}
+<h1>Products</h1>
+<div class="row">
+  {% for p in items %}
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <div class="card h-100 p-3">
+        <h5>{{ p.name }}</h5>
+        <p class="text-muted">£{{ p.price }}</p>
+        <a class="btn btn-primary" href="/{{ p.id }}/">Details</a>
+      </div>
+    </div>
+  {% empty %}
+    <p>No products yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
