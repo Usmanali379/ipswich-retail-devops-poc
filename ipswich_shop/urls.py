@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static  # <— MOVE THESE UP
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import include, path
@@ -20,7 +22,5 @@ urlpatterns = [
     path("metrics", metrics),
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
-
+# keep this block at the bottom, but imports are at the top now
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
