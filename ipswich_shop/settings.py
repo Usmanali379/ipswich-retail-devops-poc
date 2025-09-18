@@ -69,7 +69,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}}
+# Use Manifest only if explicitly enabled; otherwise safe compressed storage
+USE_MANIFEST_STATIC = os.getenv("USE_MANIFEST_STATIC", "0") == "1"
+if USE_MANIFEST_STATIC:
+    STORAGES = {
+        "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}
+    }
+else:
+    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}}
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
