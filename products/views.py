@@ -1,9 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
+
 from .models import Product
+
 
 def product_list(request):
     items = Product.objects.all().order_by("name")
     return render(request, "products/product_list.html", {"items": items})
+
 
 def product_detail(request, pk: int):
     item = get_object_or_404(Product, pk=pk)
