@@ -15,3 +15,8 @@ def add_to_cart(request, pk: int):
     product = get_object_or_404(Product, pk=pk)
     CartItem.objects.create(product=product, quantity=1)
     return redirect("/cart/")
+
+
+def clear_cart(request):
+    CartItem.objects.all().delete()
+    return redirect("/cart/")

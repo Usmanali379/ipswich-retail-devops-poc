@@ -1,0 +1,4 @@
+/* simple brand style */
+.navbar-brand { font-weight: 700; letter-spacing: .5px; }
+.card img { object-fit: cover; height: 180px; }
+.badge-price { font-size: 0.9rem; }
